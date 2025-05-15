@@ -5,11 +5,13 @@ import com.example.back.repository.CoachRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class CoachService {
     private final BackService backService;
     private final CoachRepository coachRepository;
+    private final Random random = new Random();
 
     public CoachService(BackService backService, CoachRepository coachRepository) {
         this.backService = backService;
@@ -26,10 +28,15 @@ public class CoachService {
 
     public String getMessage() {
         Integer ratio = backService.calculRatio();
-        if (ratio > 0) {
-            return "yes";
+        List<String> messages;
+        if (ratio > 50) {
+            messages = coachRepository.getMessage(0);
+//            return "yes";
         } else {
-            return "coucou";
+            messages = coachRepository.getMessage(1);
+//            return "coucou";
         }
+        int index = random.nextInt(messages.size());
+        return messages.get(index);
     }
 }

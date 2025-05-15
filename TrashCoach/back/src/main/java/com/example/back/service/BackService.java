@@ -4,6 +4,9 @@ import com.example.back.model.User;
 import com.example.back.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -23,7 +26,16 @@ public class BackService {
     }
 
     public Integer calculRatio() {
-        Integer positif = userRepository.countPositif();
-        return positif;
+        LocalDate today = LocalDate.now();
+        LocalDateTime start = today.atStartOfDay();         // 00:00:00
+        LocalDateTime end = today.atTime(LocalTime.MAX);
+
+        Integer ratio;
+
+        Integer positif = userRepository.countPositif(start, end);
+        Integer all = userRepository.countAll(start, end);
+
+        ratio = (positif * 100) / all;
+        return ratio;
     }
 }
