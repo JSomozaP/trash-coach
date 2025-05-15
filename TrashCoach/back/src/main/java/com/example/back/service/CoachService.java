@@ -26,16 +26,15 @@ public class CoachService {
         return coachRepository.save(coach);
     }
 
-    public String getMessage() {
-        Integer ratio = backService.calculRatio();
+    public List<String> getMessages() {
+        Integer ratio = (Math.round(backService.calculRatio() / 10.0f) * 10) / 10;
         List<String> messages;
-        if (ratio > 50) {
-            messages = coachRepository.getMessage(0);
-//            return "yes";
-        } else {
-            messages = coachRepository.getMessage(1);
-//            return "coucou";
-        }
+        messages = coachRepository.getMessage(ratio);
+        return messages;
+    }
+
+    public String getMessage() {
+        List<String> messages = getMessages();
         int index = random.nextInt(messages.size());
         return messages.get(index);
     }

@@ -31,4 +31,9 @@ public class CoachController {
     public String getMessage() {
         return coachService.getMessage();
     }
+
+    @PostMapping("/messages")
+    public List<String> getMessages() {
+        return coachService.getMessages();
+    }
 }

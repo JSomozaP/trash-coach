@@ -34,8 +34,11 @@ public class BackService {
 
         Integer positif = userRepository.countPositif(start, end);
         Integer all = userRepository.countAll(start, end);
-
-        ratio = (positif * 100) / all;
+        if (all == 0) {
+            ratio = 50;
+        } else {
+            ratio = (positif * 100) / all;
+        }
         return ratio;
     }
 }
