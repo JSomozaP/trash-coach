@@ -1,0 +1,13 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: back
+  datasource:
+    url: jdbc:mysql://localhost:3308/trash-userdb
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

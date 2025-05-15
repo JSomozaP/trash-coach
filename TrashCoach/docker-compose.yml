@@ -1,6 +1,30 @@
 version: '3.8'
 
 services:
+<<<<<<< HEAD
+=======
+
+  web:
+    image: trashteam/trash-web:latest
+    container_name: trash-web
+    ports:
+      - "8080:8080"
+    networks:
+      - trash-network
+
+  back:
+    image: trashteam/trash-back:latest
+    container_name: trash-back
+    ports:
+      - "8090:8090"
+    networks:
+      - trash-network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://userdb:3306/trash-userdb
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+>>>>>>> main
   userdb:
     container_name: trash-userdb
     ports:
