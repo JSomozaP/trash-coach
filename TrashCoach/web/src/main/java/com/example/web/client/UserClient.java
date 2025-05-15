@@ -5,27 +5,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-<<<<<<< HEAD
-@FeignClient(name = "back")
-public interface UserClient {
-//    @RequestMapping(method = RequestMethod.POST, value = "[url]", consumes = "application/json")
-//    [type de data à récupérer] [nom fonction](@RequestBody [type de data à envoyer] [nom]);
-@RequestMapping(method = RequestMethod.POST, value = "/add", consumes = "application/json")
-User createTrash(@RequestBody User trash);
-
-@RequestMapping(method = RequestMethod.GET, value = "/all")
-List<User> getAllTrash();
-
-@RequestMapping(method = RequestMethod.DELETE, value = "/api/trash/{id}")
-void deleteTrash(@PathVariable Long id);
-
-
-}
-
-=======
 @FeignClient(name = "back", url = "http://localhost:8090")
 public interface UserClient {
-//    @RequestMapping(method = RequestMethod.POST, value = "[url]", consumes = "application/json")
-//    [type de data à récupérer] [nom fonction](@RequestBody [type de data à envoyer] [nom]);
+    //    @RequestMapping(method = RequestMethod.POST, value = "[url]", consumes = "application/json")
+    //    [type de data à récupérer] [nom fonction](@RequestBody [type de data à envoyer] [nom]);
+    @RequestMapping(method = RequestMethod.POST, value = "/add", consumes = "application/json")
+    User createTrash(@RequestBody User trash);
+
+    @RequestMapping(method = RequestMethod.GET, value = "/all")
+    List<User> getAllTrash();
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/api/trash/{id}")
+    void deleteTrash(@PathVariable Long id);
 }
->>>>>>> main
