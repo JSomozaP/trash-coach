@@ -25,4 +25,31 @@ public class WebService {
 //        toto.setStatus(true);
 //        toto.setDate(LocalDateTime.now());
 //    }
+
+// Récupérer tous les déchets
+public List<User> getAllTrash() {
+    return userClient.getAllTrash();
+}
+
+// Ajouter un nouveau déchet
+public User addTrash(User trash) {
+    trash.setDate(LocalDateTime.now());
+    return userClient.createTrash(trash);
+}
+
+// Supprimer un déchet
+public void deleteTrash(Long id) {
+    userClient.deleteTrash(id);
+}
+
+// Pour tester la création d'un déchet
+public void test() {
+    User trash = new User();
+    trash.setText("Test Trash");
+    trash.setStatus(true);
+    trash.setDate(LocalDateTime.now());
+    userClient.createTrash(trash);
+}
+
+
 }

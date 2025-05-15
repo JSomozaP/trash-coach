@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Métadonnées de base -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trash Coach</title>
+    <!-- Liaison avec la feuille de style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Conteneur principal de l'application -->
+    <div id="trash-container">
+        <!-- En-tête de l'application -->
+        <header>
+            <div id="header">
+                <!-- Titre principal -->
+                <h1>Trash Coach</h1>
+                <!-- Emplacement pour le logo -->
+                <div id="logo-placeholder">
+                    <img src="placeholder-logo.png" alt="Logo" id="logo">
+                </div>
+            </div>
+        </header>
+        
+        <!-- Contenu principal -->
+        <main>
+            <!-- Section d'ajout de déchets -->
+            <section id="add-trash">
+                <h2>Ajouter un déchet</h2>
+                <!-- Conteneur des boutons d'action -->
+                <div class="buttons-container">
+                    <button id="input-button">Nouveaux déchets</button>
+                    <button id="coach-button">Conseils du Coach</button>
+                </div>
+            </section>
+
+            <!-- Section liste des déchets -->
+            <section id="tasks-list">
+                <h2>Liste des déchets</h2>
+                <!-- Conteneur dynamique pour les tâches -->
+                <div id="tasks-container"></div>
+                <!-- Compteurs de tâches -->
+                <div id="tasks-counter">
+                    <p>Tâches positives: <span id="positive-count">0</span></p>
+                    <p>Tâches négatives: <span id="negative-count">0</span></p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal pour l'ajout de nouvelles tâches -->
+        <div id="trash-modal" class="modal">
+            <div class="modal-content">
+                <!-- Bouton de fermeture du modal -->
+                <span class="close">&times;</span>
+                <h2>Ajouter un nouveau déchet</h2>
+                <!-- Formulaire d'ajout de déchet -->
+                <form id="trash-form">
+                    <div class="form-group">
+                        <label for="trash-name">Nom du déchet:</label>
+                        <input type="text" id="trash-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="is-negative">
+                            <input type="checkbox" id="is-negative">
+                            Déchet non recyclable
+                        </label>
+                    </div>
+                    <button type="submit">Ajouter</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toast pour l'affichage des conseils -->
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <!-- Liaison avec le script JavaScript -->
+    <script src="main.js"></script>
+</body>
+</html>

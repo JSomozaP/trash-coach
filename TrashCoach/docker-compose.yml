@@ -1,6 +1,8 @@
 version: '3.8'
 
 services:
+<<<<<<< HEAD
+=======
 
   web:
     image: trashteam/trash-web:latest
@@ -22,6 +24,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
 
+>>>>>>> main
   userdb:
     container_name: trash-userdb
     ports:
