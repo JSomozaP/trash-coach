@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Métadonnées de base -->
     <meta charset="UTF-8">
@@ -41,6 +41,22 @@
             <!-- Section liste des déchets -->
             <section id="tasks-list">
                 <h2>Liste des déchets</h2>
+                <!-- Conteneur pour les messages utilisateurs -->
+            <div id="user-messages">
+                <div th:each="trash : ${trashList}" class="task">
+                    <span th:text="${trash.text}"></span>
+                    <div class="task-actions">
+                        <span class="task-icon" th:text="${trash.negative ? '🔴' : '🟢'}"></span>
+                        <button class="delete-btn" th:attr="data-id=${trash.id}">❌</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Conteneur pour les messages du coach -->
+            <div id="coach-messages">
+                <div th:each="message : ${trashCoachmsg}" class="coach-message">
+                    <span th:text="${message}"></span>
+                </div>
+            </div>
                 <!-- Conteneur dynamique pour les tâches -->
                 <div id="tasks-container"></div>
                 <!-- Compteurs de tâches -->
