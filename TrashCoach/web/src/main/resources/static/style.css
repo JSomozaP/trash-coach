@@ -1,18 +1,23 @@
 /* Variables globales pour les couleurs et effets */
 :root {
-    --primary-gradient: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%);
-    --negative-gradient: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-    --neutral-gradient: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
-    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --primary-gradient: linear-gradient(135deg, #ff4d4d 0%, #850000 100%);
+    --negative-gradient: linear-gradient(135deg, #000000 0%, #333333 100%);
+    --neutral-gradient: linear-gradient(135deg, #666666 0%, #444444 100%);
+    --toast-positive-gradient: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    --toast-negative-gradient: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    --toast-neutral-gradient: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Style de base pour le corps de la page */
 body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 20px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    background: #1a1a1a;
     min-height: 100vh;
+    color: #ffffff;
 }
 
 /* Conteneur principal avec largeur maximale */
@@ -24,10 +29,11 @@ body {
 
 /* Style de l'en-tête */
 #header {
-    background: white;
+    background: #2a2a2a;
     padding: 20px;
     border-radius: 15px;
     box-shadow: var(--box-shadow);
+    border: 2px solid #ff4d4d;
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
@@ -37,11 +43,18 @@ body {
 
 /* Style du titre avec dégradé */
 h1 {
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 2.5em;
+    font-family: 'Metal Mania', cursive;
+    font-size: 3.5em;
+    color: #ff4d4d;
+    text-shadow: var(--text-shadow);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-family: 'Creepster', cursive;
+    color: #ff4d4d;
+    text-shadow: var(--text-shadow);
 }
 
 /* Conteneur des boutons */
@@ -55,15 +68,15 @@ h1 {
 
 /* Style général des boutons */
 button {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
     background: var(--primary-gradient);
     color: white;
-    font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Creepster', cursive;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border: 2px solid #ff4d4d;
     box-shadow: var(--box-shadow);
+    text-shadow: var(--text-shadow);
 }
 
 /* Animation au survol des boutons */
@@ -74,9 +87,11 @@ button:hover {
 
 /* Style des tâches individuelles */
 .task {
-    background: white;
+    background: #2a2a2a;
     padding: 15px 20px;
     border-radius: 10px;
+    border: 1px solid #ff4d4d;
+    color: white;
     box-shadow: var(--box-shadow);
     margin-bottom: 10px;
     display: flex;
@@ -132,6 +147,9 @@ button:hover {
 
 /* Style du modal */
 .modal {
+    background : #2a2a2a;
+    border: 2px solid #ff4d4d;
+    color: rgb(245, 235, 235);
     display: none;
     position: fixed;
     top: 0;
@@ -143,7 +161,7 @@ button:hover {
 }
 
 .modal-content {
-    background: white;
+    background: rgb(100, 98, 98);
     padding: 30px;
     border-radius: 15px;
     width: 90%;
@@ -178,6 +196,9 @@ button:hover {
 }
 
 .form-group input[type="text"] {
+    background: #1a1a1a;
+    border: 1px solid #ff4d4d;
+    color: white;
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -189,6 +210,9 @@ button:hover {
 .toast {
     display: none;
     position: fixed;
+    font-family: 'Creepster', cursive;
+    font-size: 1.2em;
+    text-shadow: var(--text-shadow);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -204,15 +228,18 @@ button:hover {
 
 /* Variantes de couleur pour le toast */
 .toast.positive { 
-    background: var(--primary-gradient); 
+    background: var(--toast-positive-gradient); 
+    border: 2px solid #2ecc71;
 }
 
 .toast.neutral { 
-    background: var(--neutral-gradient);
+    background: var(--toast-neutral-gradient);
+    border: 2px solid #f1c40f;
 }
 
 .toast.negative { 
-    background: var(--negative-gradient);
+    background: var(--toast-negative-gradient);
+    border: 2px solid #e74c3c;
 }
 
 /* Styles responsifs pour les écrans mobiles */

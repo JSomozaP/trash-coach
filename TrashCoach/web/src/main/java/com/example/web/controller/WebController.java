@@ -22,11 +22,14 @@ public class WebController {
     @GetMapping("/")
     public ModelAndView test(Model model) {
 
+
 //        [Model] [nom] = webService.[fonction()];
 //        model.addAttribute("[nom]", [nom]);
+
         return new ModelAndView("[nom du fichier html]");
 //        return new ModelAndView("[nom du fichier html]", "[nom formulaire]", new [nom model formulaire]());
     }
+
 
 @GetMapping("/")
 public ModelAndView showHomePage(Model model) {
@@ -37,7 +40,7 @@ public ModelAndView showHomePage(Model model) {
 }
 
 @PostMapping("/add")
-public User addTrash(@RequestBody User trash) {
+public User addTrash(@RequestBody User trash = new User()) {
     return webService.addTrash(trash);
 }
 

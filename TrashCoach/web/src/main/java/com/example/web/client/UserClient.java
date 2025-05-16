@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import java.util.List;
 
 @FeignClient(name = "back", url = "http://localhost:8090")
@@ -22,3 +23,4 @@ public interface UserClient {
     @RequestMapping(method = RequestMethod.DELETE, value = "/api/trash/{id}")
     void deleteTrash(@PathVariable Long id);
 }
+
