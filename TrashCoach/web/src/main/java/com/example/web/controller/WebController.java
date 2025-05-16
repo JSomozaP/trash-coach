@@ -2,6 +2,7 @@ package com.example.web.controller;
 
 import com.example.web.model.User;
 import com.example.web.service.WebService;
+import com.example.web.service.form.UserForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,13 +36,14 @@ public class WebController {
 public ModelAndView showHomePage(Model model) {
     List<User> trashList = webService.getAllTrash();
     model.addAttribute("trashList", trashList);
-    return new ModelAndView("index", "trashForm", new User());
+    return new ModelAndView("index", "trashForm", new UserForm());
 
 }
 
 @PostMapping("/add")
-public User addTrash(@RequestBody User trash = new User()) {
-    return webService.addTrash(trash);
+public String addTrash(@RequestBody UserForm trash) {
+        webService.addTrash(trash);
+    return "redirect:/";
 }
 
 @DeleteMapping("/delete/{id}")
