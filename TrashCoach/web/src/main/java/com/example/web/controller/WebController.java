@@ -45,7 +45,7 @@ public ModelandView showHomePage(Model model) {
 }
 
 @PostMapping("/add")
-public User addTrash(@RequestBody User trash) {
+public User addTrash(@RequestBody User trash = new User()) {
     return webService.addTrash(trash);
 }
 
