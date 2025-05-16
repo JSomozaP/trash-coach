@@ -17,10 +17,13 @@ public interface UserClient {
     @RequestMapping(method = RequestMethod.POST, value = "/add", consumes = "application/json")
     User createTrash(@RequestBody User trash);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/all")
+    @RequestMapping(method = RequestMethod.GET, value = "/all", consumes = "application/json")
     List<User> getAllTrash();
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/api/trash/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/delete", consumes = "application/json")
     void deleteTrash(@PathVariable Long id);
+
+    @RequestMapping(method = RequestMethod.POST, value = "/coach", consumes = "application/json")
+    List<User> getCoachTrash(@RequestBody User trash);
 }
 
