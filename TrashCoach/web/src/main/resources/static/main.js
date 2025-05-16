@@ -1,9 +1,9 @@
 // Données des conseils du coach selon le type de message
-const coachAdvices = {
-    positive: [
-        "Ca me fait mal au coeur de le dire, mais c'est pas trop mal !",
-        "C'est pas complétement un cauchemar, mais j'aimerai me reveiller!",
-        "Ouaiiiis, génial.....j'ai envie de vomir !"
+/*const coachAdvices = {
+positive: [
+    "Ca me fait mal au coeur de le dire, mais c'est pas trop mal !",
+    "C'est pas complétement un cauchemar, mais j'aimerai me reveiller!",
+    "Ouaiiiis, génial.....j'ai envie de vomir !"
     ],
     neutral: [
         "C'est naze, mais peu mieux faire !",
@@ -15,7 +15,9 @@ const coachAdvices = {
         "Tu es un dechet comme on en voit peu !",
         "T'es bien au fond du trou, et tu creuses encore !"
     ]
-};
+};*/
+
+ 
 
 // Récupération des tâches depuis le localStorage ou initialisation d'un tableau vide
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -126,8 +128,8 @@ function showToast(message, type) {
 
 // Gestion du bouton "Conseils du Coach"
 coachButton.onclick = () => {
-    const positiveCount = tasks.filter(t => !t.isNegative).length;
-    const negativeCount = tasks.filter(t => t.isNegative).length;
+/*const positiveCount = tasks.filter(t => !t.isNegative).length;
+const negativeCount = tasks.filter(t => t.isNegative).length;
     const total = positiveCount + negativeCount;
     
     // Vérification s'il y a des tâches
@@ -144,11 +146,11 @@ coachButton.onclick = () => {
         adviceType = "positive";
     } else {
         adviceType = "negative";
-    }
+    }*/
     
     // Sélection aléatoire d'un conseil et affichage
-    const advices = coachAdvices[adviceType];
-    const randomAdvice = advices[Math.floor(Math.random() * advices.length)];
+    /*const advices = coachAdvices[adviceType];*/
+    const randomAdvice = trashCoachmsg[Math.floor(Math.random() * advices.length)];
     
     showToast(randomAdvice, adviceType);
 };
