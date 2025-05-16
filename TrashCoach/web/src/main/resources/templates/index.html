@@ -47,14 +47,8 @@
                     <span th:text="${trash.text}"></span>
                     <div class="task-actions">
                         <span class="task-icon" th:text="${trash.negative ? '🔴' : '🟢'}"></span>
-                        <button class="delete-btn" th:attr="data-id=${trash.id}">❌</button>
+                        <a th:href="@{/delete/{id}(id=${trash.id})}" class="edit-btn">❌</a>
                     </div>
-                </div>
-            </div>
-            <!-- Conteneur pour les messages du coach -->
-            <div id="coach-messages">
-                <div th:each="message : ${trashCoachmsg}" class="coach-message">
-                    <span th:text="${message}"></span>
                 </div>
             </div>
                 <!-- Conteneur dynamique pour les tâches -->
@@ -94,6 +88,9 @@
         <div id="toast" class="toast"></div>
     </div>
 
+    <script th:inline="javascript">
+        const trashCoachmsg = /*[[${trashCoachmsg}]]*/ [];
+    </script>
     <!-- Liaison avec le script JavaScript -->
     <script src="main.js"></script>
 </body>
