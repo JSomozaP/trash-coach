@@ -23,7 +23,7 @@ public interface UserClient {
     @RequestMapping(method = RequestMethod.POST, value = "/delete", consumes = "application/json")
     void deleteTrash(@PathVariable Long id);
 
-    @RequestMapping(method = RequestMethod.POST, value = "/coach", consumes = "application/json")
-    List<User> getCoachTrash(@RequestBody User trash);
+    @RequestMapping(method = RequestMethod.POST, value = "/coach/messages", consumes = "application/json")
+    List<String> getCoachTrash();
 }
 
