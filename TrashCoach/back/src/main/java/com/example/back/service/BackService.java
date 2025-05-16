@@ -25,6 +25,10 @@ public class BackService {
         return userRepository.save(user);
     }
 
+    public void delete(Long userid) {
+        userRepository.delete(userRepository.getReferenceById(userid));
+    }
+
     public Integer calculRatio() {
         LocalDate today = LocalDate.now();
         LocalDateTime start = today.atStartOfDay();         // 00:00:00

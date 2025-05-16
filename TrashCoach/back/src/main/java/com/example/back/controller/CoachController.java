@@ -1,6 +1,7 @@
 package com.example.back.controller;
 
 import com.example.back.model.Coach;
+import com.example.back.model.CoachCustom;
 import com.example.back.model.User;
 import com.example.back.service.BackService;
 import com.example.back.service.CoachService;
@@ -27,6 +28,11 @@ public class CoachController {
         return coachService.add(coach);
     }
 
+    @PostMapping("/addCustom")
+    public CoachCustom ajoutMessagesCustom(@RequestBody CoachCustom coach){
+        return coachService.addCustom(coach);
+    }
+
     @PostMapping("/message")
     public String getMessage() {
         return coachService.getMessage();
@@ -34,6 +40,6 @@ public class CoachController {
 
     @PostMapping("/messages")
     public List<String> getMessages() {
-        return coachService.getMessages();
+        return coachService.getCustomMessages();
     }
 }

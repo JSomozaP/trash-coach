@@ -1,21 +1,40 @@
 package com.example.back.service;
 
 import com.example.back.model.Coach;
+import com.example.back.model.CoachCustom;
+import com.example.back.repository.CoachCustomRepository;
 import com.example.back.repository.CoachRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Service
 public class CoachService {
     private final BackService backService;
     private final CoachRepository coachRepository;
+    private final CoachCustomRepository coachCustomRepository;
     private final Random random = new Random();
+    private final Map<String, List<String>> tagKeywords;
+    private final Map<String, Integer> categoryCodes = Map.of(
+            "procrastination", 1,
+            "excuse", 2,
+            "bouffe", 3,
+            "réussite", 4
+    );
 
-    public CoachService(BackService backService, CoachRepository coachRepository) {
+    public CoachService(BackService backService, CoachRepository coachRepository, CoachCustomRepository coachCustomRepository) {
         this.backService = backService;
         this.coachRepository = coachRepository;
+        this.coachCustomRepository = coachCustomRepository;
+
+        tagKeywords = new HashMap<>();
+        tagKeywords.put("procrastination", List.of("tiktok", "youtube", "rien", "scroll", "traîner", "flemme"));
+        tagKeywords.put("excuse", List.of("pas le temps", "fatigué", "pluie", "malade"));
+        tagKeywords.put("bouffe", List.of("croissant", "burger", "pizza", "fast-food", "manger", "snack"));
+        tagKeywords.put("réussite", List.of("sport", "étude", "code", "clean", "productif"));
     }
 
     public List<Coach> all() {
@@ -24,6 +43,10 @@ public class CoachService {
 
     public Coach add(Coach coach) {
         return coachRepository.save(coach);
+    }
+
+    public CoachCustom addCustom(CoachCustom coach) {
+        return coachCustomRepository.save(coach);
     }
 
     public List<String> getMessages() {
@@ -37,5 +60,49 @@ public class CoachService {
         List<String> messages = getMessages();
         int index = random.nextInt(messages.size());
         return messages.get(index);
+    }
+
+    public List<String> getCustomMessages() {
+        Integer ratio = (Math.round(backService.calculRatio() / 10.0f) * 10) / 10;
+        List<String> messages = coachRepository.getMessage(ratio);
+        List<String> rareMessages = coachRepository.getMessage(ratio + 20);
+
+
+        Map<String, Integer> categoryPoints = new HashMap<>();
+        for (String category : tagKeywords.keySet()) {
+            categoryPoints.put(category, 0);
+        }
+
+        for (String msg : messages) {
+            String msgLower = msg.toLowerCase();
+            for (Map.Entry<String, List<String>> entry : tagKeywords.entrySet()) {
+                String category = entry.getKey();
+                for (String keyword : entry.getValue()) {
+                    if (msgLower.contains(keyword)) {
+                        categoryPoints.put(category, categoryPoints.get(category) + 1);
+                        break;
+                    }
+                }
+            }
+        }
+
+        String dominantCategory = categoryPoints.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse("default");
+
+        Integer categorieCode = categoryCodes.getOrDefault(dominantCategory, 0);
+
+        messages.addAll(coachCustomRepository.getMessages(ratio,categorieCode));
+        
+        if (rareMessages.size() != 0) {
+            int luck = random.nextInt(1, 20);
+            if (luck == 20) {
+                return rareMessages;
+            }
+        } else if (messages.size() == 0) {
+            messages.add("T'as de la chance. J'ai rien à te dire pour l'instant.");
+        }
+        return messages;
     }
 }

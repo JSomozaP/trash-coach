@@ -28,4 +28,9 @@ public class BackController {
         return backService.add(user);
     }
 
+    @PostMapping("/delete")
+    public void deleteInfo(@RequestBody Long userid) {
+        backService.delete(userid);
+    }
+
 }
