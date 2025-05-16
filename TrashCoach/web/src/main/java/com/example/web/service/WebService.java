@@ -33,7 +33,9 @@ public List<User> getAllTrash() {
 }
 
 // Ajouter un nouveau déchet
-public User addTrash(User trash) {
+public User addTrash(UserForm userForm) {
+    User trash = new User();
+    trash.setText(userForm.getText());
     trash.setDate(LocalDateTime.now());
     return userClient.createTrash(trash);
 }
@@ -51,6 +53,11 @@ public void test() {
     trash.setDate(LocalDateTime.now());
     userClient.createTrash(trash);
 }
+
+// Récupérer les messages du coach
+    public List<string> getCoachMessages(User trash) {
+        return userClient.getCoachTrash(trash);
+    }
 
 
 }

@@ -51,17 +51,13 @@ public void deleteTrash(@PathVariable Long id) {
     webService.deleteTrash(id);
 }
 
+@PostMapping("/coach")
+public List<User> getCoachMessages(@RequestBody UserForm trash) {
+    User user = new User();
+    user.setText(trash.getText());
+    return webService.getCoachMessages(user);
 
-@GetMapping("/stats")
-public Object getTrashStats() {
-    List<User> trashList = webService.getAllTrash();
-    long positiveCount = trashList.stream().filter(t-> !t.isNegative()).count();
-    long negativeCount = trashList.stream().filter(User::isNegative).count();
 
-    return new Object() {
-        public final long positive = positiveCount;
-        public final long negative = negativeCount;
-    };
-}
+
 
 }
