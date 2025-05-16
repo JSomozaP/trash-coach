@@ -36,6 +36,8 @@ public class WebController {
 public ModelAndView showHomePage(Model model) {
     List<User> trashList = webService.getAllTrash();
     model.addAttribute("trashList", trashList);
+    List<String> trashCoachmsg = webService.getCoachMessages();
+    model.addAttribute("trashCoachmsg", trashCoachmsg);
     return new ModelAndView("index", "trashForm", new UserForm());
 
 }
@@ -51,11 +53,6 @@ public void deleteTrash(@PathVariable Long id) {
     webService.deleteTrash(id);
 }
 
-@PostMapping("/coach")
-public List<User> getCoachMessages(@RequestBody UserForm trash) {
-    User user = new User();
-    user.setText(trash.getText());
-    return webService.getCoachMessages(user);
 
 
 
