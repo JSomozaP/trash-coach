@@ -28,7 +28,7 @@ public class CoachController {
         return coachService.add(coach);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addCustom")
     public CoachCustom ajoutMessagesCustom(@RequestBody CoachCustom coach){
         return coachService.addCustom(coach);
     }
