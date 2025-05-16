@@ -2,6 +2,7 @@ package com.example.web.service;
 
 import com.example.web.client.UserClient;
 import com.example.web.model.User;
+import com.example.web.service.form.UserForm;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -36,6 +37,7 @@ public List<User> getAllTrash() {
 public User addTrash(UserForm userForm) {
     User trash = new User();
     trash.setText(userForm.getText());
+    trash.setStatus(userForm.isStatus());
     trash.setDate(LocalDateTime.now());
     return userClient.createTrash(trash);
 }
@@ -55,8 +57,8 @@ public void test() {
 }
 
 // Récupérer les messages du coach
-    public List<string> getCoachMessages(User trash) {
-        return userClient.getCoachTrash(trash);
+    public List<String> getCoachMessages() {
+        return userClient.getCoachTrash();
     }
 
 
