@@ -1,0 +1,284 @@
+/* Variables globales pour les couleurs et effets */
+:root {
+    --primary-gradient: linear-gradient(135deg, #ff4d4d 0%, #850000 100%);
+    --negative-gradient: linear-gradient(135deg, #000000 0%, #333333 100%);
+    --neutral-gradient: linear-gradient(135deg, #666666 0%, #444444 100%);
+    --toast-positive-gradient: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    --toast-negative-gradient: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    --toast-neutral-gradient: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Style de base pour le corps de la page */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #1a1a1a;
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+/* Conteneur principal avec largeur maximale */
+#trash-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style de l'en-tête */
+#header {
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    border: 2px solid #ff4d4d;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Style du titre avec dégradé */
+h1 {
+    font-family: 'Metal Mania', cursive;
+    font-size: 3.5em;
+    color: #ff4d4d;
+    text-shadow: var(--text-shadow);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-family: 'Creepster', cursive;
+    color: #ff4d4d;
+    text-shadow: var(--text-shadow);
+}
+
+/* Conteneur des boutons */
+.buttons-container {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Style général des boutons */
+button {
+    background: var(--primary-gradient);
+    color: white;
+    font-family: 'Creepster', cursive;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border: 2px solid #ff4d4d;
+    box-shadow: var(--box-shadow);
+    text-shadow: var(--text-shadow);
+}
+
+/* Animation au survol des boutons */
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Style des tâches individuelles */
+.task {
+    background: #2a2a2a;
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 1px solid #ff4d4d;
+    color: white;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+/* Animation au survol des tâches */
+.task:hover {
+    transform: translateX(5px);
+}
+
+/* Conteneur des actions de tâche */
+.task-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Style du bouton de suppression */
+.delete-btn {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+/* Animation au survol du bouton de suppression */
+.delete-btn:hover {
+    opacity: 1;
+}
+
+/* Style des compteurs */
+#tasks-counter {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+#tasks-counter p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#tasks-counter span {
+    font-weight: bold;
+}
+
+/* Style du modal */
+.modal {
+    background : #2a2a2a;
+    border: 2px solid #ff4d4d;
+    color: rgb(245, 235, 235);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: rgb(100, 98, 98);
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto;
+    position: relative;
+    box-shadow: var(--box-shadow);
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.close:hover {
+    opacity: 1;
+}
+
+/* Style du formulaire dans le modal */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"] {
+    background: #1a1a1a;
+    border: 1px solid #ff4d4d;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Style du toast de notification */
+.toast {
+    display: none;
+    position: fixed;
+    font-family: 'Creepster', cursive;
+    font-size: 1.2em;
+    text-shadow: var(--text-shadow);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    text-align: center;
+    z-index: 1000;
+    min-width: 300px;
+    animation: fadeIn 0.3s ease-out;
+    color: white;
+}
+
+/* Variantes de couleur pour le toast */
+.toast.positive { 
+    background: var(--toast-positive-gradient); 
+    border: 2px solid #2ecc71;
+}
+
+.toast.neutral { 
+    background: var(--toast-neutral-gradient);
+    border: 2px solid #f1c40f;
+}
+
+.toast.negative { 
+    background: var(--toast-negative-gradient);
+    border: 2px solid #e74c3c;
+}
+
+/* Styles responsifs pour les écrans mobiles */
+@media (max-width: 768px) {
+    /* Ajustements pour le corps */
+    body {
+        padding: 10px;
+    }
+    
+    /* Ajustements pour le conteneur principal */
+    #trash-container {
+        padding: 10px;
+    }
+    
+    /* Réduction de la taille du titre */
+    h1 {
+        font-size: 2em;
+    }
+    
+    /* Empilement vertical des boutons */
+    .buttons-container {
+        flex-direction: column;
+    }
+    
+    /* Ajustement de la largeur du toast */
+    .toast {
+        width: 90%;
+        min-width: auto;
+    }
+}
+
+/* Animation d'apparition du toast */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
