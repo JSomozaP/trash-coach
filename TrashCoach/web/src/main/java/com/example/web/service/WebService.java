@@ -3,6 +3,7 @@ package com.example.web.service;
 import com.example.web.client.UserClient;
 import com.example.web.model.DTO.Ratio;
 import com.example.web.model.User;
+import com.example.web.service.form.UserForm;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -34,7 +35,10 @@ public List<User> getAllTrash() {
 }
 
 // Ajouter un nouveau déchet
-public User addTrash(User trash) {
+public User addTrash(UserForm trashform) {
+    User trash = new User();
+    trash.setText(trashform.getText());
+    trash.setStatus(trash.isStatus());
     trash.setDate(LocalDateTime.now());
     return userClient.createTrash(trash);
 }
@@ -53,8 +57,6 @@ public void test() {
     userClient.createTrash(trash);
 }
 
-<<<<<<< Updated upstream
-=======
 // Récupérer les messages du coach
     public List<String> getCoachMessages() {
         return userClient.getCoachTrash();
@@ -64,6 +66,5 @@ public void test() {
         return userClient.getRatio();
     }
 
->>>>>>> Stashed changes
 
 }

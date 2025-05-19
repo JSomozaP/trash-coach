@@ -27,7 +27,7 @@ public interface UserClient {
     @RequestMapping(method = RequestMethod.POST, value = "/ratio", consumes = "application/json")
     Ratio getRatio();
 
-    @RequestMapping(method = RequestMethod.POST, value = "/coach", consumes = "application/json")
-    List<User> getCoachTrash(@RequestBody User trash);
+    @RequestMapping(method = RequestMethod.POST, value = "/coach/messages", consumes = "application/json")
+    List<String> getCoachTrash();
 }
 

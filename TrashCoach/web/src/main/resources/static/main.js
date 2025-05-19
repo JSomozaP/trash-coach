@@ -135,15 +135,9 @@ coachButton.onclick = () => {
     }
     
     // Sélection aléatoire d'un conseil et affichage
-<<<<<<< Updated upstream
-    const advices = coachAdvices[adviceType];
-    const randomAdvice = advices[Math.floor(Math.random() * advices.length)];
-    
-=======
     /*const advices = coachAdvices[adviceType];*/
     const randomAdvice = trashCoachmsg[Math.floor(Math.random() * trashCoachmsg.length)];
     // console.log("Coach button clicked!");
     // const randomAdvice = "test";
->>>>>>> Stashed changes
     showToast(randomAdvice, adviceType);
 };

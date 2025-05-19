@@ -1,10 +1,6 @@
 <!DOCTYPE html>
-<<<<<<< Updated upstream
-<html lang="fr">
-=======
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 
->>>>>>> Stashed changes
 <head>
     <!-- Métadonnées de base -->
     <meta charset="UTF-8">
@@ -47,8 +43,6 @@
             <!-- Section liste des déchets -->
             <section id="tasks-list">
                 <h2>Liste des déchets</h2>
-<<<<<<< Updated upstream
-=======
                 <!-- Conteneur pour les messages utilisateurs -->
                 <div id="user-messages">
                     <div th:each="trash : ${trashList}" class="task">
@@ -61,7 +55,6 @@
                         </div>
                     </div>
                 </div>
->>>>>>> Stashed changes
                 <!-- Conteneur dynamique pour les tâches -->
                 <div id="tasks-container"></div>
                 <!-- Compteurs de tâches -->
@@ -99,14 +92,11 @@
         <div id="toast" class="toast"></div>
     </div>
 
-<<<<<<< Updated upstream
-=======
     <script th:inline="javascript">
         const trashCoachmsg = /*[[${trashCoachmsg}]]*/ [];
         const positiveCount = /*${ratio.positive}*/ [];
         const negativeCount = /*[[${ratio.negative}]]*/ [];
     </script>
->>>>>>> Stashed changes
     <!-- Liaison avec le script JavaScript -->
     <script th:src="main.js"></script>
 </body>
