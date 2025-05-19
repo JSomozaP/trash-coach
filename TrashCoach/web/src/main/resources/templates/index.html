@@ -1,5 +1,10 @@
 <!DOCTYPE html>
+<<<<<<< Updated upstream
 <html lang="fr">
+=======
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+>>>>>>> Stashed changes
 <head>
     <!-- Métadonnées de base -->
     <meta charset="UTF-8">
@@ -11,6 +16,7 @@
     <!-- Liaison avec la feuille de style -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Conteneur principal de l'application -->
     <div id="trash-container">
@@ -25,7 +31,7 @@
                 </div>
             </div>
         </header>
-        
+
         <!-- Contenu principal -->
         <main>
             <!-- Section d'ajout de déchets -->
@@ -41,12 +47,27 @@
             <!-- Section liste des déchets -->
             <section id="tasks-list">
                 <h2>Liste des déchets</h2>
+<<<<<<< Updated upstream
+=======
+                <!-- Conteneur pour les messages utilisateurs -->
+                <div id="user-messages">
+                    <div th:each="trash : ${trashList}" class="task">
+                        <span th:text="${trash.text}"></span>
+                        <div class="task-actions">
+                            <span class="task-icon" th:text="${trash.status ? '🟢' : '🔴'}"></span>
+                            <form th:action="@{/delete/{id}(id=${trash.id})}" method="post" style="display:inline">
+                                <button type="submit" class="delete-btn">❌</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+>>>>>>> Stashed changes
                 <!-- Conteneur dynamique pour les tâches -->
                 <div id="tasks-container"></div>
                 <!-- Compteurs de tâches -->
                 <div id="tasks-counter">
-                    <p>Tâches positives: <span id="positive-count">0</span></p>
-                    <p>Tâches négatives: <span id="negative-count">0</span></p>
+                    <p th:text="'Tâches positives: ' + ${ratio.positive}"></p>
+                    <p th:text="'Tâches négatives: ' + ${ratio.negative}"></p>
                 </div>
             </section>
         </main>
@@ -58,15 +79,15 @@
                 <span class="close">&times;</span>
                 <h2>Ajouter un nouveau déchet</h2>
                 <!-- Formulaire d'ajout de déchet -->
-                <form id="trash-form">
+                <form id="trash-form" th:action="@{/add}" method="post">
                     <div class="form-group">
                         <label for="trash-name">Nom du déchet:</label>
-                        <input type="text" id="trash-name" required>
+                        <input type="text" id="trash-name" name="text" required>
                     </div>
                     <div class="form-group">
                         <label for="is-negative">
-                            <input type="checkbox" id="is-negative">
-                            Déchet non recyclable
+                            <input type="checkbox" id="is-negative" name="status">
+                            Déchet recyclable
                         </label>
                     </div>
                     <button type="submit">Ajouter</button>
@@ -78,7 +99,16 @@
         <div id="toast" class="toast"></div>
     </div>
 
+<<<<<<< Updated upstream
+=======
+    <script th:inline="javascript">
+        const trashCoachmsg = /*[[${trashCoachmsg}]]*/ [];
+        const positiveCount = /*${ratio.positive}*/ [];
+        const negativeCount = /*[[${ratio.negative}]]*/ [];
+    </script>
+>>>>>>> Stashed changes
     <!-- Liaison avec le script JavaScript -->
-    <script src="main.js"></script>
+    <script th:src="main.js"></script>
 </body>
+
 </html>

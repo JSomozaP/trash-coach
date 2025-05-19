@@ -9,6 +9,8 @@ services:
       - "8080:8080"
     networks:
       - trash-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
 
   back:
     image: trashteam/trash-back:latest
@@ -18,6 +20,7 @@ services:
     networks:
       - trash-network
     environment:
+      - SPRING_PROFILES_ACTIVE=default
       - SPRING_DATASOURCE_URL=jdbc:mysql://userdb:3306/trash-userdb
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root

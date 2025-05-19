@@ -1,5 +1,6 @@
 package com.example.back.controller;
 
+import com.example.back.model.DTO.Ratio;
 import com.example.back.model.User;
 import com.example.back.service.BackService;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ public class BackController {
         this.backService = backService;
     }
 
-    @GetMapping("/all")
+    @PostMapping("/all")
     public List<User> allInfos() {
         return backService.all();
     }
@@ -31,6 +32,11 @@ public class BackController {
     @PostMapping("/delete")
     public void deleteInfo(@RequestBody Long userid) {
         backService.delete(userid);
+    }
+
+    @PostMapping("/ratio")
+    public Ratio getRatio(){
+        return backService.getRatio();
     }
 
 }

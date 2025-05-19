@@ -2,6 +2,7 @@ package com.example.back.service;
 
 import com.example.back.model.Coach;
 import com.example.back.model.CoachCustom;
+import com.example.back.model.User;
 import com.example.back.repository.CoachCustomRepository;
 import com.example.back.repository.CoachRepository;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,7 @@ public class CoachService {
         Integer ratio = (Math.round(backService.calculRatio() / 10.0f) * 10) / 10;
         List<String> messages = coachRepository.getMessage(ratio);
         List<String> rareMessages = coachRepository.getMessage(ratio + 20);
+        List<User> userPrompt = backService.all();
 
 
         Map<String, Integer> categoryPoints = new HashMap<>();
@@ -73,8 +75,8 @@ public class CoachService {
             categoryPoints.put(category, 0);
         }
 
-        for (String msg : messages) {
-            String msgLower = msg.toLowerCase();
+        for (User user : userPrompt) {
+            String msgLower = user.getText().toLowerCase();
             for (Map.Entry<String, List<String>> entry : tagKeywords.entrySet()) {
                 String category = entry.getKey();
                 for (String keyword : entry.getValue()) {
@@ -93,14 +95,17 @@ public class CoachService {
 
         Integer categorieCode = categoryCodes.getOrDefault(dominantCategory, 0);
 
+        System.out.printf("categorie Code", categorieCode);
+
         messages.addAll(coachCustomRepository.getMessages(ratio,categorieCode));
         
         if (rareMessages.size() != 0) {
-            int luck = random.nextInt(1, 20);
+            int luck = random.nextInt(1, 21);
             if (luck == 20) {
                 return rareMessages;
             }
-        } else if (messages.size() == 0) {
+        }
+        if (messages.size() == 0) {
             messages.add("T'as de la chance. J'ai rien à te dire pour l'instant.");
         }
         return messages;

@@ -1,6 +1,7 @@
 package com.example.web.service;
 
 import com.example.web.client.UserClient;
+import com.example.web.model.DTO.Ratio;
 import com.example.web.model.User;
 import org.springframework.stereotype.Service;
 
@@ -52,5 +53,17 @@ public void test() {
     userClient.createTrash(trash);
 }
 
+<<<<<<< Updated upstream
+=======
+// Récupérer les messages du coach
+    public List<String> getCoachMessages() {
+        return userClient.getCoachTrash();
+    }
+
+    public Ratio getRatio(){
+        return userClient.getRatio();
+    }
+
+>>>>>>> Stashed changes
 
 }

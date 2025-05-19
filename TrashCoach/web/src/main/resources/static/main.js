@@ -29,12 +29,12 @@ const form = document.getElementById("trash-form");
 const toast = document.getElementById("toast");
 
 // Chargement initial des tâches existantes
-window.addEventListener('DOMContentLoaded', () => {
-    tasks.forEach(task => {
-        createTaskElement(task.name, task.isNegative);
-    });
-    updateCounters();
-});
+// window.addEventListener('DOMContentLoaded', () => {
+//     tasks.forEach(task => {
+//         createTaskElement(task.name, task.isNegative);
+//     });
+//     updateCounters();
+// });
 
 // Gestionnaires d'événements pour le modal
 addButton.addEventListener('click', () => {
@@ -50,19 +50,6 @@ window.addEventListener('click', (e) => {
         modal.style.display = "none";
     }
 });
-
-// Gestion de la soumission du formulaire
-form.onsubmit = (e) => {
-    e.preventDefault();
-    const name = document.getElementById("trash-name").value;
-    const isNegative = document.getElementById("is-negative").checked;
-    
-    addTask(name, isNegative);
-    updateCounters();
-    
-    form.reset();
-    modal.style.display = "none";
-};
 
 // Fonction d'ajout d'une nouvelle tâche
 function addTask(name, isNegative) {
@@ -93,12 +80,12 @@ function createTaskElement(name, isNegative) {
     `;
     
     // Gestion de la suppression d'une tâche
-    taskElement.querySelector('.delete-btn').addEventListener('click', () => {
-        tasks = tasks.filter(t => t.name !== name);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        taskElement.remove();
-        updateCounters();
-    });
+    // taskElement.querySelector('.delete-btn').addEventListener('click', () => {
+    //     tasks = tasks.filter(t => t.name !== name);
+    //     localStorage.setItem('tasks', JSON.stringify(tasks));
+    //     taskElement.remove();
+    //     updateCounters();
+    // });
     
     document.getElementById("tasks-container").appendChild(taskElement);
 }
@@ -113,10 +100,11 @@ function updateCounters() {
 }
 
 // Fonction d'affichage du toast
-function showToast(message, type) {
+function showToast(message, adviceType) {
     toast.textContent = message;
-    toast.className = `toast ${type}`;
+    toast.className = `toast ${adviceType}`;
     toast.style.display = "block";
+    console.log("Toast element:", toast);
     
     // Masquage automatique du toast après 5 secondes
     setTimeout(() => {
@@ -134,7 +122,7 @@ coachButton.onclick = () => {
     if (total === 0) {
         showToast("Commencez par ajouter quelques déchets !", "neutral");
         return;
-    }
+    }*/
     
     // Détermination du type de conseil
     let adviceType;
@@ -147,8 +135,15 @@ coachButton.onclick = () => {
     }
     
     // Sélection aléatoire d'un conseil et affichage
+<<<<<<< Updated upstream
     const advices = coachAdvices[adviceType];
     const randomAdvice = advices[Math.floor(Math.random() * advices.length)];
     
+=======
+    /*const advices = coachAdvices[adviceType];*/
+    const randomAdvice = trashCoachmsg[Math.floor(Math.random() * trashCoachmsg.length)];
+    // console.log("Coach button clicked!");
+    // const randomAdvice = "test";
+>>>>>>> Stashed changes
     showToast(randomAdvice, adviceType);
 };
